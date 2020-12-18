@@ -12,6 +12,8 @@ import {
 import FontIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Axios from 'axios';
 
+import LoginScreen from './screens/LoginScreen'
+import LoadingScreen from'./screens/LoadingScreen'
 
 import SecondScreen from './screens/SecondScreen';
 import password from './screens/password';
@@ -27,6 +29,12 @@ import QRgenerator_minor from './screens/QRgenerator_minor';
 import success from './screens/success';
 import Loading_2 from './screens/Loading_2'
 import wallet from './screens/wallet'
+
+
+import firebase from 'firebase'
+import { firebaseConfig } from './config';
+import { createNativeWrapper } from 'react-native-gesture-handler';
+if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
 
 
 
@@ -72,116 +80,148 @@ const message = createStackNavigator({
 })
 
 
-const StacNav2 = createStackNavigator({
+
+
+
+// const StacNav2 = createStackNavigator({
+//   LoadingScreen : AppSwitchNavigator,
+
+//   Home: { screen: Home ,
+//     navigationOptions: ({ navigation }) => ({
+//       title: user_name+"님",
+//       headerRight:
+//       <TouchableOpacity><FontIcon 
+//       name={"menu"}
+//       size={30}
+//       onPress={() => navigation.openDrawer()}
+
+//       color="black"
+//       paddingLeft= {10}>
+//        </FontIcon>
+//        </TouchableOpacity>,
+//       ...navigationProps,  
+//     }),
+//    },
+//   Details: { screen: Details,
+//     navigationOptions: ({ navigation }) => ({
+//       title: "  Details",
+//       headerTintColor: 'black',
+//       headerStyle: { backgroundColor: 'white' , height: 110 },
+//       headerTitleStyle: { fontSize: 20, fontweight: 'bold', marginRight:80 , alignItems: 'flex-start',
+//       justifyContent: 'center',
+
+//     },
+//     }),
+//  },
+//  Details2: { screen: Details2,
+//   navigationOptions: ({ navigation }) => ({
+//     title: "  Details2",
+//     headerTintColor: 'black',
+//     headerStyle: { backgroundColor: 'white' , height: 110 },
+//     headerTitleStyle: { fontSize: 20, fontweight: 'bold', marginRight:80 , alignItems: 'flex-start',
+//     justifyContent: 'center',
+
+//   },
+//   }),
+// },
+
+//   SecondScreen: { screen: SecondScreen,
+//     navigationOptions: ({ navigation }) => ({
+//       headerShown: false,
+//     }),
+//  },
+//  QRgenerator_adult: {screen: QRgenerator_adult,
+//     navigationOptions: ({ navigation }) => ({
+//       title: " ",
+//       headerTintColor: 'black',
+//       headerStyle: { backgroundColor: 'white' , height: 110 },
+//       headerTitleStyle: { fontSize: 20, fontweight: 'bold', marginRight:80 , alignItems: 'flex-start',
+//       justifyContent: 'center',
+//     },
+//     }),
+// },
+// QRgenerator_minor: {screen: QRgenerator_minor,
+//   navigationOptions: ({ navigation }) => ({
+//     title: " ",
+//     headerTintColor: 'black',
+//     headerStyle: { backgroundColor: 'white' , height: 110 },
+//     headerTitleStyle: { fontSize: 20, fontweight: 'bold', marginRight:80 , alignItems: 'flex-start',
+//     justifyContent: 'center',
+//   },
+//   }),
+// },
+
+//   QRcode_scanner: { screen: QRcode_scanner, ncavigationOptions: { headerShown: false } },
+
+//   password: { screen: password,
+//     navigationOptions: ({ navigation }) => ({
+//       headerShown: false,
+//       ...navigationProps,
+//     }),
+//  },
+
+
+//  Loading_2: { screen: Loading_2,
+//   navigationOptions: ({ navigation }) => ({
+//     headerShown: false,
+//   }),
+// },
+
+// password: { screen: password,
+//   navigationOptions: ({ navigation }) => ({
+//     headerShown: false,
+//     ...navigationProps,
+//   }),
+// },
+
+// success: { screen: success,
+// navigationOptions: ({ navigation }) => ({
+//   headerShown: false,
+//   ...navigationProps,
+// }),
+// },
+
+// wallet : { screen: wallet,
+//   navigationOptions: ({ navigation }) => ({
+//     headerShown: false,
+//     ...navigationProps,
+//   }),
+//   },
+
+// });
+
+
+
+// 로그인 
+const AppSwitchNavigator = createSwitchNavigator({
+  LoadingScreen: LoadingScreen,
+  LoginScreen: LoginScreen,
   Home: { screen: Home ,
-    navigationOptions: ({ navigation }) => ({
-      title: user_name+"님",
-      headerRight:
-      <TouchableOpacity><FontIcon 
-      name={"menu"}
-      size={30}
-      onPress={() => navigation.openDrawer()}
+        navigationOptions: ({ navigation }) => ({
+          title: user_name+"님",
+          headerRight:
+          <TouchableOpacity><FontIcon 
+          name={"menu"}
+          size={30}
+          onPress={() => navigation.openDrawer()}
+    
+          color="black"
+          paddingLeft= {10}>
+           </FontIcon>
+           </TouchableOpacity>,
+          ...navigationProps,  
+        }),
+       }
 
-      color="black"
-      paddingLeft= {10}>
-       </FontIcon>
-       </TouchableOpacity>,
-      ...navigationProps,  
-    }),
-   },
-  Details: { screen: Details,
-    navigationOptions: ({ navigation }) => ({
-      title: "  Details",
-      headerTintColor: 'black',
-      headerStyle: { backgroundColor: 'white' , height: 110 },
-      headerTitleStyle: { fontSize: 20, fontweight: 'bold', marginRight:80 , alignItems: 'flex-start',
-      justifyContent: 'center',
+})
 
-    },
-    }),
- },
- Details2: { screen: Details2,
-  navigationOptions: ({ navigation }) => ({
-    title: "  Details2",
-    headerTintColor: 'black',
-    headerStyle: { backgroundColor: 'white' , height: 110 },
-    headerTitleStyle: { fontSize: 20, fontweight: 'bold', marginRight:80 , alignItems: 'flex-start',
-    justifyContent: 'center',
-
-  },
-  }),
-},
-
-  SecondScreen: { screen: SecondScreen,
-    navigationOptions: ({ navigation }) => ({
-      headerShown: false,
-    }),
- },
- QRgenerator_adult: {screen: QRgenerator_adult,
-    navigationOptions: ({ navigation }) => ({
-      title: " ",
-      headerTintColor: 'black',
-      headerStyle: { backgroundColor: 'white' , height: 110 },
-      headerTitleStyle: { fontSize: 20, fontweight: 'bold', marginRight:80 , alignItems: 'flex-start',
-      justifyContent: 'center',
-    },
-    }),
-},
-QRgenerator_minor: {screen: QRgenerator_minor,
-  navigationOptions: ({ navigation }) => ({
-    title: " ",
-    headerTintColor: 'black',
-    headerStyle: { backgroundColor: 'white' , height: 110 },
-    headerTitleStyle: { fontSize: 20, fontweight: 'bold', marginRight:80 , alignItems: 'flex-start',
-    justifyContent: 'center',
-  },
-  }),
-},
-
-  QRcode_scanner: { screen: QRcode_scanner, ncavigationOptions: { headerShown: false } },
-
-  password: { screen: password,
-    navigationOptions: ({ navigation }) => ({
-      headerShown: false,
-      ...navigationProps,
-    }),
- },
-
-
- Loading_2: { screen: Loading_2,
-  navigationOptions: ({ navigation }) => ({
-    headerShown: false,
-  }),
-},
-
-password: { screen: password,
-  navigationOptions: ({ navigation }) => ({
-    headerShown: false,
-    ...navigationProps,
-  }),
-},
-
-success: { screen: success,
-navigationOptions: ({ navigation }) => ({
-  headerShown: false,
-  ...navigationProps,
-}),
-},
-
-wallet : { screen: wallet,
-  navigationOptions: ({ navigation }) => ({
-    headerShown: false,
-    ...navigationProps,
-  }),
-  },
-
-});
+const AppNavigator = createAppContainer(AppSwitchNavigator)
 
 
 
 const TabNavigator = createBottomTabNavigator({
   홈: {
-    screen: StacNav2,
+    screen: AppNavigator,
     navigationOptions: {
       tabBarIcon: () => <FontIcon name='home-city' fontweight="bold" color="#231d54" size={30}></FontIcon>,
       tabBarOptions: {
@@ -217,22 +257,23 @@ const DrawerNavigator = createDrawerNavigator({
 const Appcontainer = createAppContainer(DrawerNavigator);
 
 export default class App extends Component{
-  state={
-    isLoading : true
-  };
-  componentDidMount= async() => {  
-    // 1,000가 1초
-    setTimeout(() => {this.setState({isLoading: false})},4000);
-  }
+  // state={
+  //   isLoading : true
+  // };
+  // componentDidMount= async() => {  
+  //   // 1,000가 1초
+  //   setTimeout(() => {this.setState({isLoading: false})},4000);
+  // }
 
 
   render(){
-      if(this.state.isLoading){
-        Axios.post('http://192.168.0.13:3001/api/log')
-        return <Loading/>
-      }else{
-        return <Appcontainer />
-      }
+      // if(this.state.isLoading){
+      //   Axios.post('http://192.168.0.13:3001/api/log')
+      //   return <Loading/>
+      // }else{
+      //   return <Appcontainer />
+      // }
+      return <Appcontainer />
   }
 }
 
