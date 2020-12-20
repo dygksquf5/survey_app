@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "884861809882",
+    "project_id": "survey-react-app",
+    "storage_bucket": "survey-react-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884861809882:android:16032a7a6257763d0da1e3",
+        "android_client_info": {
+          "package_name": "com.yosuniiiii.survey_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884861809882-acu11a4guos8mlbi58gpi8egk70qqkfp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yosuniiiii.survey_app",
+            "certificate_hash": "152b383844d7f020eeaf9041dd6fbc38a8c324a6"
+          }
+        },
+        {
+          "client_id": "884861809882-i4gc9j5ms7hkmas8rt65tcm6j9mgospl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMAdnH8oonczsDR-aaig8MNbxrFKN2C1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884861809882-i4gc9j5ms7hkmas8rt65tcm6j9mgospl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

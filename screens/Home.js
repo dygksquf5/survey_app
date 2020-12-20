@@ -1,5 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, Component, Button } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,41 +7,14 @@ import {
   StatusBar,
   TouchableOpacity,
   TouchableHighlight,
-  FlatList,
-  List
 } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Body } from 'native-base';
+import { Container, Content, Card} from 'native-base';
 import FontIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
 
-import Axios from 'axios';
-
-
- // database 로 완성시켜야 될 코드!!! // 
-let testtest1 = '신분증이 없습니다'
-let testtest2 = ' 어떤식으로 디자인을 짜야되징 '
-let date_1 = '몰라몰라몰라 ' ;
-let a = 1;
-let testtest = null; 
-let test_pic = null;
-
-
-if (a == undefined){
-   testtest = testtest1,
-   test_pic = null,
-   date_1 = "발급받으세요"
-} else {
-   testtest = testtest2
-   test_pic = require("../assets/images/search.gif"), 
-   date_1
-}
-
-
-
 export default class Home extends Component {
-
 
   render() {
 
@@ -50,19 +22,19 @@ export default class Home extends Component {
       <View style={styles.root}>
         <Container>
           <Content style={{marginBottom: -200}}>
-          <TouchableOpacity onPress={this.gotoPassword}>
+          {/* <TouchableOpacity onPress={this.gotoPassword}> */}
+          <TouchableOpacity>
             <Card style={styles.card}>
             <View style={styles.line}>
                 <Text>   </Text>
               </View>
 
               <View style={styles.cardDate}>
-              <Image style={styles.icon1} 
-               source={test_pic}>
+              <Image style={styles.icon1}>
                   </Image>
 
-              <Text style={styles.cardDownText}>{testtest}</Text>
-                <Text >{date_1}</Text>
+              <Text style={styles.cardDownText}>{this.props.navigation.getParam("username")}</Text>
+              <Button title="로그아웃" onPress={() => this.props.navigation.navigate("LoginScreen") }/> 
 
               </View>              
 
@@ -72,7 +44,8 @@ export default class Home extends Component {
 
           
           <Content style={{marginVertical:-110}}>
-          <TouchableOpacity onPress={this.gotoGetCred}>
+          {/* <TouchableOpacity onPress={this.gotoGetCred}> */}
+          <TouchableOpacity >
             <Card style={styles.card2}> 
               <View style={styles.plusIcon}>
                 <FontIcon name='folder-plus-outline' color='#96b4ee' size={45}> 
@@ -89,7 +62,8 @@ export default class Home extends Component {
 
 
         <View style={styles.addButton}>
-          <TouchableHighlight underlayColor='#ff7043' onPress={this.gotoQR} >
+          {/* <TouchableHighlight underlayColor='#ff7043' onPress={this.gotoQR} > */}
+          <TouchableHighlight underlayColor='#ff7043' >
             <Text style={{ marginLeft:-10, marginTop: 3,
                   color: "white"}}> <FontIcon name='qrcode-scan' color='white' size={27}  style={{marginLeft:-90}} /><Text>   </Text>
               SCAN CODE
@@ -100,15 +74,15 @@ export default class Home extends Component {
     );
     
   }
-  gotoQR = () => {
-    this.props.navigation.navigate('QRcode_scanner');
-  };
-  gotoPassword = () => {
-    this.props.navigation.navigate('SecondScreen');
-  };
-  gotoGetCred = () => {
-    this.props.navigation.replace('Loading_2');
-  };
+  // gotoQR = () => {
+  //   this.props.navigation.navigate('QRcode_scanner');
+  // };
+  // gotoPassword = () => {
+  //   this.props.navigation.navigate('SecondScreen');
+  // };
+  // gotoGetCred = () => {
+  //   this.props.navigation.replace('Loading_2');
+  // };
 
 }
 

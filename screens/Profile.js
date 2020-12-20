@@ -3,9 +3,12 @@ import { StyleSheet,
   Text, 
   View, 
   StatusBar,  
-  Image
+  Image,
+  Button,
+  Alert
 } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Body } from 'native-base';
+import firebase from 'firebase'
 
 
 
@@ -25,9 +28,8 @@ export default class Profile extends Component {
                 </Image>
               </View>
 
-                <View style={styles.view2} >
-                  <Text>You've verified very successfully</Text>
-                </View> 
+
+                <Text style={styles.view2}></Text>
 
                 <View style={styles.view3} >
                 <Text>2020.10.5</Text>
@@ -41,7 +43,7 @@ export default class Profile extends Component {
               </View>
 
                 <View style={styles.view2} >
-                  <Text>You've verified very successfully</Text>
+                  <Text>{this.props.navigation.getParam("username")}</Text>
                 </View> 
 
                 <View style={styles.view3} >
@@ -67,6 +69,7 @@ export default class Profile extends Component {
          
           </Content>
         </Container>
+        <Button title="로그아웃 " onPress={()=> firebase.auth().signOut()}/>
 
       </View>
     );
