@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 
-import Expo from "expo"
+// import Expo from "expo"
 // import {Google} from 'expo'
 import * as Google from 'expo-google-app-auth';
 import firebase from 'firebase';
@@ -15,6 +15,13 @@ const ANDROID_CLIENT_ID =
         
 
 export default class LoginScreen extends Component {
+    // change= () =>{
+    //   return(
+    //       this.props.navigation.navigate('Home')
+    //   )
+    // }
+
+
     isUserEqual = (googleUser, firebaseUser)=> {
         if (firebaseUser) {
           var providerData = firebaseUser.providerData;
@@ -91,10 +98,10 @@ export default class LoginScreen extends Component {
             if (result.type === 'success') {
                 this.onSignIn(result);
                 console.log("LoginScreen.js", result.user.givenName);
-                this.props.navigation.navigate('LoadingScreen', {
-                    username: result.user.givenName
-                })
-                return result.accessToken;
+                // this.props.navigation.navigate(this.change(), {
+                //     username: result.user.givenName
+                // })
+                return result.accessToken, this.props.HomeStack()
             } else {
                 return {cancelled: true}
             }

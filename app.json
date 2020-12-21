@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "servey_app",
-    "slug": "servey_app",
+    "name": "tutorial",
+    "slug": "tutorial",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,21 +17,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "config":{
-        "googleSignIn":{
-          "reservedClientId": "com.googleusercontent.apps.884861809882-pd8lksphtg2cr31qanerc60sead808c2"
-        }
-      }
-
-
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/favicon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.yosuniiiii.survey_app"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
