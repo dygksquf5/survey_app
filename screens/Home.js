@@ -3,19 +3,79 @@ import {View, StyleSheet,Text,ImageBackground, Button} from 'react-native';
 import firebase from 'firebase'
 import Day from'./day';
 import Card from'./card';
+import User from '../User';
 
 const user = 'yohan'
 
+// var ref = firebase.database().ref(`${mValue}`);
+//     ref.once("value")
+//     .then((snapshot) => {
+//         let Profile = snapshot.child("profile_picture").val()
+//         let Name = snapshot.child("first_name").val()
+//         let email = snapshot.child("gmail").val()
+
+//         let arr = this.state.arrUser
+//         arr.push({Profile, Name, email})
+//         this.setState({arrUser: arr})
+//     }).catch(err=> console.log(err));
+
+
+
+
+// var userId = firebase.auth().currentUser.uid;
+
+// firebase.database().ref('/users/' + userId).once('value', val => {
+//    console.log(val.val())
+// });
+
+
+
+// firebase.auth().onAuthStateChanged(user => { 
+//     this.currentUser = firebase.auth().currentUser; 
+//     if (this.currentUser) { 
+//         this.vendor = firebase.firestore().doc(`/Products/${this.currentUser.uid}`); 
+//     } 
+// });
+
+
+
+
 export default class home extends React.Component{
+
+    componentDidMount(){
+        this.getUserName();
+    }
+
+
     state={
         color : '#136DF',
-        activestate: 'rgba(255,255,255,0.291821)'
-    }
-    change= () =>{
+        activestate: 'rgba(255,255,255,0.291821)',
+        username: "",
+        photoUrl: "",
+        email: "",
+        uid: '',
+    };
+
+    change = () => {
         return(
             this.props.navigation.navigate('Mission')
-        )
+        );
     }
+
+    getUserName = async () => {
+        var userId = User.uid;
+        await firebase.database().ref('user/' + userId).on('value', (snapshot) =>{
+        const UserEmail = snapshot.val().gmail;
+        const UserName = snapshot.val().name;
+        console.log("name!!! : " + UserName)
+        this.setState({
+            username: UserName,
+            email: UserEmail
+        })
+        });
+    }
+
+
     render(){
         return(
             <View style={styles.container}>
@@ -24,8 +84,8 @@ export default class home extends React.Component{
 
                     </View>
                     <View style={styles.boxtwo}>
-                        <Text style={styles.name}> Hi {user}</Text>
-                        <Text style={styles.subtitle}> This is your info</Text>
+                        <Text style={styles.name}> Hi {this.state.username}</Text>
+                        <Text style={styles.subtitle}> {this.state.email}</Text>
 
                     </View>
                     <View style={styles.boxthree}>

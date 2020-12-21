@@ -5,7 +5,8 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 // import {Google} from 'expo'
 import * as Google from 'expo-google-app-auth';
 import firebase from 'firebase';
-
+import Home from './home';
+import User from '../User';
 const IOS_CLIENT_ID = 
         '884861809882-pd8lksphtg2cr31qanerc60sead808c2.apps.googleusercontent.com'
 const ANDROID_CLIENT_ID = 
@@ -15,6 +16,15 @@ const ANDROID_CLIENT_ID =
         
 
 export default class LoginScreen extends Component {
+  state = {
+    email: "",
+    phone: "",
+    name: "",
+    image: "",
+    uid : ""
+  };
+
+
     isUserEqual = (googleUser, firebaseUser)=> {
         if (firebaseUser) {
           var providerData = firebaseUser.providerData;
@@ -53,20 +63,23 @@ export default class LoginScreen extends Component {
                     .ref('/user/' + result.user.uid)
                     .set({
                         gmail: result.user.email,
-                        profile_picture: result.additionalUserInfo.profile.picture,
+                        // profile_picture: result.additionalUserInfo.profile.picture,
+                        profile_picture: result.user.photoURL,
                         locale: result.additionalUserInfo.profile.locale,
                         first_name: result.additionalUserInfo.profile.given_name,
                         last_name: result.additionalUserInfo.profile.family_name,
+                        name: result.additionalUserInfo.profile.name,
                         created_at: Date.now()
                     })
                     .then(function(snapshot){
-                        console.log(snapshot)
+                      console.log(snapshot)
                     })
                 } else{
                     firebase.database()
                     .ref('/user/' + result.user.uid).update({
                         last_logged_in: Date.now()
                     })
+
                 }
             })
             .catch((error) => {
@@ -98,7 +111,7 @@ export default class LoginScreen extends Component {
                 // this.props.navigation.navigate(this.change(), {
                 //     username: result.user.givenName
                 // })
-                return result.accessToken, this.props.HomeStack()
+                return result.accessToken
             } else {
                 return {cancelled: true}
             }
