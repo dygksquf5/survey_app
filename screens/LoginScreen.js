@@ -15,21 +15,18 @@ const ANDROID_CLIENT_ID =
         
 
 export default class LoginScreen extends Component {
-    // change= () =>{
-    //   return(
-    //       this.props.navigation.navigate('Home')
-    //   )
-    // }
-
-
     isUserEqual = (googleUser, firebaseUser)=> {
         if (firebaseUser) {
           var providerData = firebaseUser.providerData;
+          // for (var i = 0; i < providerData.length; i++) {
+          //   if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+          //       providerData[i].uid === googleUser.getBasicProfile().getId()) {
+          //     // We don't need to reauth the Firebase connection.
+          //     return true;
           for (var i = 0; i < providerData.length; i++) {
             if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-                providerData[i].uid === googleUser.getBasicProfile().getId()) {
-              // We don't need to reauth the Firebase connection.
-              return true;
+               providerData[i].uid === googleUser.user.id) {
+               return true;
             }
           }
         }

@@ -72,7 +72,7 @@ export default class App extends React.Component{
   }
 
   state ={
-    isLoggedIn: false
+    isLoggedIn: true
   }
 
   checkIfLoggedIn = () => {
@@ -100,7 +100,7 @@ export default class App extends React.Component{
   render(){
     return(
       <NavigationContainer>
-        {!this.isLoggedIn ? <LoginStack/> : <HomeStack/>}
+        {!this.state.isLoggedIn ? <LoginStack/> : <HomeStack/>}
       </NavigationContainer>
     );
   }
