@@ -1,5 +1,11 @@
 # This is an App for studying. 
  There is a Google Loging process. 
+
+
+# Refers
+1. https://docs.expo.io/versions/latest/sdk/google/
+2. http://firebase.google.com
+3. https://github.com/lingonsaft/google-sign-in-expo-create-react-native-app
  
  
  
