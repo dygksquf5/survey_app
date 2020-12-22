@@ -5,4 +5,5 @@
  
 # This is a sort of testing and for studying app with Expo  & Google sign in process
 
-![yosuniiiii](https://user-images.githubusercontent.com/66229916/102843321-4b82d200-444c-11eb-9f11-05a036b3debc.png)
+![yosuniiiii](https://user-images.githubusercontent.com/66229916/102843638-ea0f3300-444c-11eb-8a4a-0c8ef88c6633.png)
+
